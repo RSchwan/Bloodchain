@@ -9,6 +9,7 @@ class TransactionSchema extends Schema {
       table.increments()
       table.integer('parent_transaction_id').unsigned().nullable()
       table.string('sample_id')
+      table.string('internal_sample_id').nullable()
       table.string('lab_id')
       table.string('action')
       table.string('file_path')
