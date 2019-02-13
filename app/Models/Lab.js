@@ -4,11 +4,17 @@
 const Model = use('Model')
 
 class Lab extends Model {
-  static get createdAtColumn () {
-    return null
+  static boot () {
+    super.boot()
+    this.addTrait('NoTimestamp')
   }
-  static get updatedAtColumn () {
-    return null
+
+  static get incrementing () {
+    return false
+  }
+
+  transactions () {
+    return this.hasMany('App/Models/Transaction')
   }
 }
 

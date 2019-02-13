@@ -7,6 +7,14 @@ class Transaction extends Model {
   static get updatedAtColumn () {
     return null
   }
+
+  lab () {
+    return this.belongsTo('App/Models/Lab')
+  }
+
+  sample () {
+    return this.belongsTo('App/Models/Sample')
+  }
 }
 
 module.exports = Transaction

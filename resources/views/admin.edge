@@ -1,0 +1,14 @@
+@layout('layout')
+
+@section('content')
+  <div class="container">
+    <h1>Admin</h1>
+    <hr>
+
+    <ul>
+      @each(sample in samples)
+        <li> {{ sample.id }} </li>
+      @endeach
+    </ul>
+  </div>
+@endsection
