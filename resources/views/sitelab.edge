@@ -32,16 +32,18 @@
       </div>
       <div class="form-group">
         <label for="inputAction">Action</label>
-        <input type="text" class="form-control" id="inputAction" placeholder="Checking blood color.">
+        <select id="inputAction" class="form-control">
+          <option>check-in</option>
+          <option>submission</option>
+          <option>check-out</option>
+          <option>disposal</option>
+        </select>
       </div>
       <div class="form-group">
         <div class="input-group">
           <div class="custom-file">
             <input type="file" class="custom-file-input" id="inputResultFile">
             <label class="custom-file-label" for="inputResultFile" aria-describedby="inputGroupFileAddon02">Choose file</label>
-          </div>
-          <div class="input-group-append">
-            <span class="input-group-text" id="inputResultFile">Upload</span>
           </div>
         </div>
       </div>

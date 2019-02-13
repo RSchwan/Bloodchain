@@ -44,17 +44,19 @@ class DevelopmentSeeder {
         })
       }
 
-      const lab = this.randomChoice(labs);
-      await this.asyncForEach(['check-in', 'submission', 'disposal'], async action => {
-        transaction = await Factory
-          .model('App/Models/Transaction')
-          .create({
-            parent_transaction_id: transaction ? transaction.id : null,
-            sample_id: sample.id,
-            lab_id: lab.id,
-            action: action
-          })
-      })
+      if (this.randomChoice([true, false])) {
+        const lab = this.randomChoice(labs);
+        await this.asyncForEach(['check-in', 'submission', 'disposal'], async action => {
+          transaction = await Factory
+            .model('App/Models/Transaction')
+            .create({
+              parent_transaction_id: transaction ? transaction.id : null,
+              sample_id: sample.id,
+              lab_id: lab.id,
+              action: action
+            })
+        })
+      }      
     })
   }
 }

@@ -5,11 +5,11 @@
   @set('title', 'Bloodchain - Analyser-Lab')
 
   <div class="container">
-    <form>
+    <form action="/analyserlab" method="POST" enctype="multipart/form-data">
+      {{ csrfField() }}
       <div class="form-group">
         <label for="inputLab">Lab ID</label>
-        <!--<input type="text" class="form-control" id="inputLab" placeholder="VeryFancyLab">-->
-        <select id="inputLabId" class="form-control">
+        <select id="inputLabId" class="form-control" name="lab_id">
           @each(lab in labs)
             <option>{{ lab.id }}</option>
           @endeach
@@ -17,8 +17,7 @@
       </div>
       <div class="form-group">
         <label for="inputSampleId">Sample ID</label>
-        <!--<input type="text" class="form-control" id="inputSampleId" placeholder="1234">-->
-        <select id="inputSampleId" class="form-control">
+        <select id="inputSampleId" class="form-control" name="sample_id">
           @each(sample in samples)
             <option>{{ sample.id }}</option>
           @endeach
@@ -26,20 +25,22 @@
       </div>
       <div class="form-group">
         <label for="inputInternalSampleId">Internal Sample ID</label>
-        <input type="text" class="form-control" id="inputInternalSampleId" placeholder="9876">
+        <input type="text" class="form-control" id="inputInternalSampleId" placeholder="9876" name="internal_sample_id">
       </div>
       <div class="form-group">
         <label for="inputAction">Action</label>
-        <input type="text" class="form-control" id="inputAction" placeholder="Checking blood color.">
+        <select id="inputAction" class="form-control" name="action">
+          <option>check-in</option>
+          <option>submission</option>
+          <option>check-out</option>
+          <option>disposal</option>
+        </select>
       </div>
       <div class="form-group">
         <div class="input-group">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" id="inputResultFile">
+            <input type="file" class="custom-file-input" id="inputResultFile" name="file">
             <label class="custom-file-label" for="inputResultFile" aria-describedby="inputGroupFileAddon02">Choose file</label>
-          </div>
-          <div class="input-group-append">
-            <span class="input-group-text" id="inputResultFile">Upload</span>
           </div>
         </div>
       </div>

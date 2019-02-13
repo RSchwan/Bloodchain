@@ -34,6 +34,7 @@ Factory.blueprint('App/Models/Lab', (faker, _, data) => {
 
 Factory.blueprint('App/Models/Transaction', (faker, _, data) => {
   return {
+    internal_sample_id: faker.pickone([null, faker.string({length: 8})]),
     action: faker.pickone(['check-in', 'submission', 'check-out', 'disposal']),
     ...data
   }
