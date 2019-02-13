@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <title>Bloodchain</title>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  {{ style('app') }}
+</head>
+<body>
+
+    <header>
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-start">
+          <i class="fas fa-file-medical-alt text-light mr-2"></i>	
+          <div class="navbar-brand d-flex align-items-center">
+            <strong>Bloodchain</strong>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  @!section('content')
+  {{ script('app') }}
+</body>
+</html>
