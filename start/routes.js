@@ -25,3 +25,6 @@ Route.post('sitelab', 'SitelabController.store')
 
 Route.get('analyserlab', 'AnalyserlabController.index')
 Route.post('analyserlab', 'AnalyserlabController.store')
+
+Route.get('patient', 'PatientController.index')
+Route.post('patient', 'PatientController.store')

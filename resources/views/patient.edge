@@ -1,0 +1,21 @@
+@layout('layout')
+
+@section('content')
+
+@set('title', 'Bloodchain - Patient')
+
+  <div class="container">
+    <form action="/patient" method="POST">
+      {{ csrfField() }}
+      <div class="form-group">
+        <label for="inputPatientId">Patient ID</label>
+        <input type="text" class="form-control" id="inputPatientId" class="form-control" name="patient_id">
+      </div>
+      <div class="form-group">
+        <label for="inputRevokeKey">Consensus Revoke Key</label>
+        <input type="text" class="form-control" id="inputRevokeKey" class="form-control" name="revoke_key">
+      </div>
+      <button type="submit" class="btn btn-primary">Revoke</button>
+    </form>
+  </div>
+@endsection
