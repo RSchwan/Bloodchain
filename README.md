@@ -20,3 +20,9 @@ Run the following command to seed the development database.
 ```js
 adonis seed
 ```
+
+### Interface to Blockchain
+* Create symbolic links from smart contracts ABI's to folder abi with
+
+cd abi
+ln -s <Path/to/ConsensusContract.json> ConsensusContract.json
