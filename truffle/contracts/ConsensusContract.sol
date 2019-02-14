@@ -1,5 +1,7 @@
 pragma solidity ^0.5.0;
+
 contract ConsensusContract {
+
   struct Consensus {
         bool consensus_status; //1 for consensus, 0 for no consensus
         uint timestamp;

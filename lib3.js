@@ -57,7 +57,7 @@ exports.Consensus = {
 
 }
 
-exports.Actions = {
+exports.Transactions = {
     init: (contractAddress, nodeAddress, pathABI, port) => {
         // Temporarily import libraries
         let fs = require('fs');
@@ -68,10 +68,10 @@ exports.Actions = {
         let json = JSON.parse(fs.readFileSync(pathABI, 'utf8'));
         let abi = json.abi;
 
-        // Create link to actions contract
+        // Create link to transactions contract
         let provider = new Web3.providers.HttpProvider(`http://localhost:${port}`);
         Contract.setProvider(provider);
-        this.Actions.contract = new Contract(abi, contractAddress, {from: nodeAddress});
+        this.Transactions.contract = new Contract(abi, contractAddress, {from: nodeAddress});
 
         // Create web3 instance
         this.web3 = new Web3(provider);
@@ -81,7 +81,7 @@ exports.Actions = {
     },
 
     getVar: () => {
-        this.Actions.contract.methods.getVar()
+        this.Transactions.contract.methods.getVar()
         .call()
         .then((response) => {
             console.log(response);
@@ -91,9 +91,8 @@ exports.Actions = {
         });
     },
 
-    addAction: (transactionId, hash) => {
-        console.log(this.Actions.contract.methods);
-        this.Actions.contract.methods.addAction(transactionId, hash)
+    addTransaction: (transactionId, hash) => {
+        this.Transactions.contract.methods.addTransaction(transactionId, hash)
         .send({gas: 250000})
         .then((response) => {
             console.log(response);
@@ -104,7 +103,7 @@ exports.Actions = {
     },
 
     getHash: (transactionId) => {
-        this.Actions.contract.methods.getHash(transactionId)
+        this.Transactions.contract.methods.getHash(transactionId)
         .call()
         .then((response) => {
             console.log(response);
@@ -114,8 +113,8 @@ exports.Actions = {
         });
     },
 
-    getActionsCount: () => {
-        this.Actions.contract.methods.getActionsCount()
+    getTransactionsCount: () => {
+        this.Transactions.contract.methods.getTransactionCount()
         .call()
         .then((response) => {
             console.log(response);
@@ -125,8 +124,8 @@ exports.Actions = {
         });
     },
 
-    getActions: (internal) => {
-        this.Actions.contract.methods.getActions(internal)
+    getTransactions: (internal) => {
+        this.Transactions.contract.methods.getTransaction(internal)
         .call()
         .then((response) => {
             console.log(response);
