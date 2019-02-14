@@ -38,11 +38,13 @@ class AnalyserlabController {
       })
 
       const file = request.file('file')
-      const newFileName = `${transaction.id}_${file.clientName}`
-      await Drive.put(newFileName, file)
-
-      transaction.file_path = newFileName
-      transaction.save()
+      if (file) {
+        const newFileName = `${transaction.id}_${file.clientName}`
+        await Drive.put(newFileName, file)
+  
+        transaction.file_path = newFileName
+        await transaction.save()  
+      }
 
       return response.redirect('back')
   }

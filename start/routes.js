@@ -21,6 +21,7 @@ Route.on('/').render('welcome')
 Route.get('admin', 'AdminController.index')
 
 Route.get('sitelab', 'SitelabController.index')
+Route.post('sitelab', 'SitelabController.store')
 
 Route.get('analyserlab', 'AnalyserlabController.index')
 Route.post('analyserlab', 'AnalyserlabController.store')

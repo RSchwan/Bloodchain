@@ -10,16 +10,24 @@
 </head>
 <body>
 
-    <header>
-      <div class="navbar navbar-dark bg-dark box-shadow mb-4">
-        <div class="container d-flex justify-content-start">
-          <i class="fas fa-file-medical-alt text-light mr-2"></i>	
-          <div class="navbar-brand d-flex align-items-center">
-            <strong>{{ title || 'Bloodchain' }}</strong>
-          </div>
+  <header>
+    <div class="navbar navbar-dark bg-dark box-shadow mb-4">
+      <div class="container d-flex justify-content-start">
+        <i class="fas fa-file-medical-alt text-light mr-2"></i>	
+        <div class="navbar-brand d-flex align-items-center">
+          <strong>{{ title || 'Bloodchain' }}</strong>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
+
+  @if(flashMessage('notification'))
+    <div class="container">
+      <div class="alert alert-info" role="alert">
+        {{ flashMessage('notification') }}
+      </div>
+    </div>
+  @endif
 
   @!section('content')
   {{ script('app') }}

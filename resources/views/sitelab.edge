@@ -5,10 +5,11 @@
   @set('title', 'Bloodchain - Site-Lab (taking samples)')
 
   <div class="container">
-    <form>
+    <form action="/sitelab" method="POST" enctype="multipart/form-data">
+      {{ csrfField() }}
       <div class="form-group">
         <label for="inputLab">Lab ID</label>
-        <select id="inputLabId" class="form-control">
+        <select id="inputLabId" class="form-control" name="lab_id">
           @each(lab in labs)
             <option>{{ lab.id }}</option>
           @endeach
@@ -16,7 +17,7 @@
       </div>
       <div class="form-group">
         <label for="inputSampleId">Sample ID</label>
-        <select id="inputSampleId" class="form-control">
+        <select id="inputSampleId" class="form-control" name="sample_id">
           @each(sample in samples)
             <option>{{ sample.id }}</option>
           @endeach
@@ -24,15 +25,15 @@
       </div>
       <div class="form-group">
         <label for="inputInternalSampleId">Internal Sample ID</label>
-        <input type="text" class="form-control" id="inputInternalSampleId" placeholder="9876">
+        <input type="text" class="form-control" id="inputInternalSampleId" placeholder="9876" name="internal_sample_id">
       </div>
       <div class="form-group">
         <label for="inputPatientId">Patient ID</label>
-        <input type="text" class="form-control" id="inputPatientId" placeholder="9876">
+        <input type="text" class="form-control" id="inputPatientId" placeholder="DGBA62" name="patient_id">
       </div>
       <div class="form-group">
         <label for="inputAction">Action</label>
-        <select id="inputAction" class="form-control">
+        <select id="inputAction" class="form-control" name="action">
           <option>check-in</option>
           <option>submission</option>
           <option>check-out</option>
@@ -42,17 +43,9 @@
       <div class="form-group">
         <div class="input-group">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" id="inputResultFile">
+            <input type="file" class="custom-file-input" id="inputResultFile" name="file">
             <label class="custom-file-label" for="inputResultFile" aria-describedby="inputGroupFileAddon02">Choose file</label>
           </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="gridCheck">
-          <label class="form-check-label" for="gridCheck">
-            Patient consent given? 
-          </label>
         </div>
       </div>
       <button type="submit" class="btn btn-primary">Send</button>
