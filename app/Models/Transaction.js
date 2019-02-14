@@ -1,6 +1,8 @@
 'use strict'
 
 const { Keccak } = require('sha3');
+const converter = require('hex2dec');
+const stringify = require('json-stable-stringify')
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
@@ -30,8 +32,9 @@ class Transaction extends Model {
     }
 
     const transactionHash = new Keccak(256)
-    transactionHash.update(JSON.stringify(this.toJSON()) + fileHashString);
-    return transactionHash.digest('hex')
+    transactionHash.update(stringify(this.toJSON()) + fileHashString)
+    //console.log(converter.hexToDec('0x' + transactionHash.digest('hex')));
+    return converter.hexToDec('0x' + transactionHash.digest('hex'))
   }
 }
 

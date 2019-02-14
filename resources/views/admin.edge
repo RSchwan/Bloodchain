@@ -18,7 +18,7 @@
                   <h5>Patient ID: {{ sample.patient_id }}</h5>
                 </div>
                 <div class="col-sm">
-                <h5>Consent: {{ sample.consent ? 'Yes' : 'No' }}</h5>
+                <h5>Consent: <span class="{{ sample.consent ? 'text-success' : 'text-danger' }}">{{ sample.consent ? 'Yes' : 'No' }}</span></h5>
                 </div>
               </div>
             </div>
@@ -35,7 +35,7 @@
               </thead>
               <tbody>
                 @each(transaction in sample.transactions)
-                  <tr>
+                  <tr class="{{ transaction.hashMatch ? 'table-success' : 'table-danger' }}">
                     <td>{{ transaction.id }}</td>
                     <td>{{ transaction.lab_id }}</td>
                     <td>{{ transaction.internal_sample_id || 'none' }}</td>

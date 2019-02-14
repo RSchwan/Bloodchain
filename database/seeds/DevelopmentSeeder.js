@@ -15,7 +15,10 @@ const _ = require('lodash')
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use('Factory')
 
+const Transaction = use('App/Models/Transaction')
+
 const Consensus = use('Blockchain/Consensus')
+const Transactions = use('Blockchain/Transactions')
 
 class DevelopmentSeeder {
   randomChoice (arr) {
@@ -66,6 +69,8 @@ class DevelopmentSeeder {
               lab_id: lab.id,
               action: action
             })
+          transaction = await Transaction.find(transaction.id)
+          await Transactions.addTransaction(transaction.id, await transaction.calculateTransactionHash())
         })
       }
 
@@ -80,6 +85,8 @@ class DevelopmentSeeder {
               lab_id: lab.id,
               action: action
             })
+          transaction = await Transaction.find(transaction.id)
+          await Transactions.addTransaction(transaction.id, await transaction.calculateTransactionHash())
         })
       }
     })

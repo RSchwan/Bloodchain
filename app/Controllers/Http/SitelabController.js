@@ -7,6 +7,7 @@ const Sample = use('App/Models/Sample')
 const Transaction = use('App/Models/Transaction')
 
 const Consensus = use('Blockchain/Consensus')
+const Transactions = use('Blockchain/Transactions')
 
 class SitelabController {
   async index ({ view }) {
@@ -57,6 +58,8 @@ class SitelabController {
       transaction.file_path = newFileName
       await transaction.save()  
     }
+
+    await Transactions.addTransaction(transaction.id, await transaction.calculateTransactionHash())
 
     return response.redirect('back')
   }

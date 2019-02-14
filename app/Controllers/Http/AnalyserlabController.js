@@ -6,6 +6,8 @@ const Lab = use('App/Models/Lab')
 const Sample = use('App/Models/Sample')
 const Transaction = use('App/Models/Transaction')
 
+const Transactions = use('Blockchain/Transactions')
+
 class AnalyserlabController {
   async index ({ view }) {
 
@@ -19,34 +21,36 @@ class AnalyserlabController {
   }
 
   async store ({ request, response }) {
-      const data = request.only([
-        'lab_id',
-        'sample_id',
-        'internal_sample_id',
-        'action'
-      ])
-      
-      const parentTransaction = await Transaction
-                                        .query()
-                                        .where('sample_id', data.sample_id)
-                                        .orderBy('id', 'desc')
-                                        .first();
+    const data = request.only([
+      'lab_id',
+      'sample_id',
+      'internal_sample_id',
+      'action'
+    ])
+    
+    const parentTransaction = await Transaction
+                                      .query()
+                                      .where('sample_id', data.sample_id)
+                                      .orderBy('id', 'desc')
+                                      .first();
 
-      const transaction = await Transaction.create({
-        ...data,
-        parent_transaction_id: parentTransaction.id
-      })
+    const transaction = await Transaction.create({
+      ...data,
+      parent_transaction_id: parentTransaction.id
+    })
 
-      const file = request.file('file')
-      if (file) {
-        const newFileName = `${transaction.id}_${file.clientName}`
-        await Drive.put(newFileName, file)
-  
-        transaction.file_path = newFileName
-        await transaction.save()  
-      }
+    const file = request.file('file')
+    if (file) {
+      const newFileName = `${transaction.id}_${file.clientName}`
+      await Drive.put(newFileName, file)
 
-      return response.redirect('back')
+      transaction.file_path = newFileName
+      await transaction.save()  
+    }
+
+    await Transactions.addTransaction(transaction.id, await transaction.calculateTransactionHash())
+
+    return response.redirect('back')
   }
 }
 
