@@ -10,8 +10,12 @@
 |
 */
 
+const _ = require('lodash')
+
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use('Factory')
+
+const Consensus = use('Blockchain/Consensus')
 
 class DevelopmentSeeder {
   randomChoice (arr) {
@@ -27,6 +31,11 @@ class DevelopmentSeeder {
   async run () {
     const labs = await Factory.model('App/Models/Lab').createMany(20)
     const samples = await Factory.model('App/Models/Sample').createMany(5)
+
+    await this.asyncForEach(samples, async sample => {
+      const revokeKey = _.times(20, () => _.random(35).toString(36)).join('')
+      await Consensus.createConsensus(sample.patient_id, revokeKey)
+    })
 
     await this.asyncForEach(samples, async sample => {
       let transaction = null

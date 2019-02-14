@@ -35,7 +35,8 @@
     "@adonisjs/shield": "^1.0.8",
     "lodash": "^4.17.11",
     "sha3": "^2.0.0",
-    "sqlite3": "^4.0.6"
+    "sqlite3": "^4.0.6",
+    "web3": "^1.0.0-beta.46"
   },
   "devDependencies": {
     "bootstrap": "^4.3.0",
