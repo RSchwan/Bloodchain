@@ -29,8 +29,24 @@ class DevelopmentSeeder {
   }
 
   async run () {
-    const labs = await Factory.model('App/Models/Lab').createMany(20)
-    const samples = await Factory.model('App/Models/Sample').createMany(5)
+    const labs = [
+        await Factory.model('App/Models/Lab').create({id: 'Zurich'}),
+        await Factory.model('App/Models/Lab').create({id: 'Bern'}),
+        await Factory.model('App/Models/Lab').create({id: 'Geneva'}),
+        await Factory.model('App/Models/Lab').create({id: 'Biel'}),
+        await Factory.model('App/Models/Lab').create({id: 'Lausanne'}),
+        await Factory.model('App/Models/Lab').create({id: 'Lugano'}),
+        await Factory.model('App/Models/Lab').create({id: 'Luzern'})
+    ];
+    const samples = [
+        await Factory.model('App/Models/Sample').create({id: '168600', patient_id: '105733'}),
+        await Factory.model('App/Models/Sample').create({id: '104997', patient_id: '836518'}),
+        await Factory.model('App/Models/Sample').create({id: '194818', patient_id: '739563'}),
+        await Factory.model('App/Models/Sample').create({id: '124045', patient_id: '234975'}),
+        await Factory.model('App/Models/Sample').create({id: '148933', patient_id: '907123'}),
+        await Factory.model('App/Models/Sample').create({id: '165070', patient_id: '536551'}),
+        await Factory.model('App/Models/Sample').create({id: '187395', patient_id: '200357'})
+    ];
 
     await this.asyncForEach(samples, async sample => {
       const revokeKey = _.times(20, () => _.random(35).toString(36)).join('')
@@ -65,7 +81,7 @@ class DevelopmentSeeder {
               action: action
             })
         })
-      }      
+      }
     })
   }
 }

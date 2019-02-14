@@ -25,7 +25,7 @@ Factory.blueprint('App/Models/Sample', (faker, _, data) => {
 
 Factory.blueprint('App/Models/Lab', (faker, _, data) => {
   return {
-    id: faker.string({length: 16}),
+    id: faker.city(),
     location: faker.address(),
     type: faker.pickone(['oc lab', 'result lab', 'central lab']),
     ...data
@@ -34,7 +34,7 @@ Factory.blueprint('App/Models/Lab', (faker, _, data) => {
 
 Factory.blueprint('App/Models/Transaction', (faker, _, data) => {
   return {
-    internal_sample_id: faker.pickone([null, faker.string({length: 8})]),
+    internal_sample_id: faker.pickone([null, faker.integer({min: 100000, max: 200000})]),
     action: faker.pickone(['check-in', 'submission', 'check-out', 'disposal']),
     ...data
   }
