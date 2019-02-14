@@ -4,12 +4,12 @@ The main objective of this hackathon project is to propose a solution for a clin
 The objective of the challenge is to show how a solution can be created that makes use of blockchain technology to manage the chain of custody of the end-to-end lifecycle of samples as they move from one laboratory to another while tracking basic sample information for each step. In addition to that the proposed solution offers the possibility to the patient to revoke is consent that gives the permission to a given company to conduct tests on his sample. The status of the consent of a given patient is securely stored on the blockchain, so that that once the status is modified it will be always visible. 
 
 # Features
-Bloodchain runs on a single webserver, which communicates with a centralized database and the blockchain. It can be accessed using a common browser, to make use of the functionalities listed below:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.)&nbsp; Submission of actions taken upon a sample.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.)&nbsp; Trace all action on a sample in an admin tool.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.)&nbsp; Avoid a posteriori modification of clinical results thanks block chain and database link.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.)&nbsp; Patient can revoke the consent of partecipating at the clinical study at any given time.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.)&nbsp; Status of the consent of the patient is securely stored on the blockchain.
+Bloodchain runs on a single webserver, which communicates with a centralized database and the blockchain. It can be accessed using a common browser, to make use of the functionalities listed below:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp; Submission of actions taken upon a sample.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp; Trace all action on a sample in an admin tool.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.&nbsp; Avoid a posteriori modification of clinical results thanks block chain and database link.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.&nbsp; Patient can revoke the consent of partecipating at the clinical study at any given time.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.&nbsp; Status of the consent of the patient is securely stored on the blockchain.
 
 #### Submission Interface
 ![alt text](https://github.com/RSchwan/Bloodchain/blob/master/img/SubmissionInterface.png)
