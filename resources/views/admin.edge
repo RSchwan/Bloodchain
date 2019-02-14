@@ -1,14 +1,54 @@
 @layout('layout')
 
 @section('content')
-  <div class="container">
-    <h1>Admin</h1>
-    <hr>
 
-    <ul>
-      @each(sample in samples)
-        <li> {{ sample.id }} </li>
-      @endeach
-    </ul>
+@set('title', 'Bloodchain - Admin')
+
+  <div class="container">
+    @each(sample in samples)
+      <div class="row">
+        <div class="card mb-3" style="width: 100%;">
+          <div class="card-header">
+            <h2>Sample {{ sample.id }}</h2>
+          </div>
+          <div class="card-body">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm">
+                  <h5>Patient: {{ sample.patient_id }}</h5>
+                </div>
+                <div class="col-sm">
+                  <h5>Consent: Yes/No</h5>
+                </div>
+              </div>
+            </div>
+            <p></p>
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">Transaction ID</th>
+                  <th scope="col">Lab</th>
+                  <th scope="col">Int. ID</th>
+                  <th scope="col">Action</th>
+                  <th scope="col">File</th>
+                </tr>
+              </thead>
+              <tbody>
+                @each(transaction in sample.transactions)
+                  <tr>
+                    <td>{{ transaction.id }}</td>
+                    <td>{{ transaction.lab_id }}</td>
+                    <td>{{ transaction.internal_sample_id || 'none' }}</td>
+                    <td>{{ transaction.action }}</td>
+                    <td>{{ transaction.file_path || 'none' }}</td>
+                  </tr>
+                @endeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    @endeach
+    <!-- FOR EACH SAMPLE -->
   </div>
 @endsection
