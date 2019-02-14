@@ -31,14 +31,8 @@ exports.Consensus = {
   },
 
   revokeConsensus: (patientId, password) => {
-      this.Consensus.contract.methods.revokeconsensus(patientId, password)
-      .send()
-      .then((response) => {
-          console.log(response);
-      })
-      .catch((error) => {
-          console.log(error);
-      });
+      return this.contract.methods.revokeconsensus(patientId, password)
+                .send({ from: this.nodeAddress });
   },
 
 }

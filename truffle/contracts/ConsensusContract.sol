@@ -23,7 +23,7 @@ contract ConsensusContract {
   function getconsensus(string memory _patient_id) view public returns(bool, uint){
     return (patients[_patient_id].consensus_status,patients[_patient_id].timestamp); //returns the consensus of a patient at  a given time.
   }
-  function revokeconsensus(string memory _patient_id, uint _key) public {
+  function revokeconsensus(string memory _patient_id, string memory _key) public {
     require(uint(keccak256(abi.encodePacked(_key)))==patients[_patient_id].keyhash);
     patients[_patient_id].consensus_status=false;
   }
