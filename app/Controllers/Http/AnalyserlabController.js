@@ -1,6 +1,6 @@
 'use strict'
 
-const Drive = use('Drive')
+const Helpers = use('Helpers')
 
 const Lab = use('App/Models/Lab')
 const Sample = use('App/Models/Sample')
@@ -42,7 +42,9 @@ class AnalyserlabController {
     const file = request.file('file')
     if (file) {
       const newFileName = `${transaction.id}_${file.clientName}`
-      await Drive.put(newFileName, file)
+      await file.move(Helpers.tmpPath(), {
+        name: newFileName
+      })
 
       transaction.file_path = newFileName
       await transaction.save()  

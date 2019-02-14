@@ -2,6 +2,8 @@
 
 const _ = require('lodash')
 
+const Helpers = use('Helpers')
+
 const Lab = use('App/Models/Lab')
 const Sample = use('App/Models/Sample')
 const Transaction = use('App/Models/Transaction')
@@ -53,7 +55,9 @@ class SitelabController {
     const file = request.file('file')
     if (file) {
       const newFileName = `${transaction.id}_${file.clientName}`
-      await Drive.put(newFileName, file)
+      await file.move(Helpers.tmpPath(), {
+        name: newFileName
+      })
 
       transaction.file_path = newFileName
       await transaction.save()  
