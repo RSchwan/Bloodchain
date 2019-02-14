@@ -45,9 +45,9 @@ class SitelabController {
                                       .orderBy('id', 'desc')
                                       .first();
 
-    const transaction = await Transaction.create({
+    let transaction = await Transaction.create({
       ...data,
-      parent_transaction_id: parentTransaction.id
+      parent_transaction_id: parentTransaction ? parentTransaction.id : null
     })
 
     const file = request.file('file')
@@ -59,6 +59,7 @@ class SitelabController {
       await transaction.save()  
     }
 
+    transaction = await Transaction.find(transaction.id)
     await Transactions.addTransaction(transaction.id, await transaction.calculateTransactionHash())
 
     return response.redirect('back')

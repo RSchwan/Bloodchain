@@ -26,6 +26,7 @@ class AdminController {
         const localHash = await transaction.calculateTransactionHash()
         const remoteHash = await Transactions.getHash(transaction.id)
         matchMap[transaction.id] = localHash === remoteHash
+        console.log(remoteHash)
       })
     })
 

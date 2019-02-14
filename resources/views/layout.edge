@@ -29,6 +29,14 @@
     </div>
   @endif
 
+  @if(flashMessage('errorNotification'))
+    <div class="container">
+      <div class="alert alert-danger" role="alert">
+        {{ flashMessage('errorNotification') }}
+      </div>
+    </div>
+  @endif
+
   @!section('content')
   {{ script('app') }}
 </body>

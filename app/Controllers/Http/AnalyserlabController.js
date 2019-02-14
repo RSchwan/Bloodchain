@@ -20,7 +20,7 @@ class AnalyserlabController {
     })
   }
 
-  async store ({ request, response }) {
+  async store ({ request, response, session }) {
     const data = request.only([
       'lab_id',
       'sample_id',
@@ -34,9 +34,9 @@ class AnalyserlabController {
                                       .orderBy('id', 'desc')
                                       .first();
 
-    const transaction = await Transaction.create({
+    let transaction = await Transaction.create({
       ...data,
-      parent_transaction_id: parentTransaction.id
+      parent_transaction_id: parentTransaction ? parentTransaction.id : null
     })
 
     const file = request.file('file')
@@ -48,7 +48,10 @@ class AnalyserlabController {
       await transaction.save()  
     }
 
+    transaction = await Transaction.find(transaction.id)
     await Transactions.addTransaction(transaction.id, await transaction.calculateTransactionHash())
+
+    session.flash({ notification: 'Your transaction has been logged' })
 
     return response.redirect('back')
   }

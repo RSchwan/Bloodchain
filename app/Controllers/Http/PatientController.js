@@ -14,7 +14,7 @@ class PatientController {
       await Consensus.revokeConsensus(data.patient_id, data.revoke_key)
       session.flash({ notification: 'Consensus has been revoked' })
     } catch {
-      session.flash({ notification: 'Consensus has not been revoked. Consensus Revoke Key is not valid.' })
+      session.flash({ errorNotification: 'Consensus has not been revoked. Consensus Revoke Key is not valid.' })
     }
 
     return response.redirect('back')
