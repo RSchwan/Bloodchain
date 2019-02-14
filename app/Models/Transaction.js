@@ -33,7 +33,6 @@ class Transaction extends Model {
 
     const transactionHash = new Keccak(256)
     transactionHash.update(stringify(this.toJSON()) + fileHashString)
-    //console.log(converter.hexToDec('0x' + transactionHash.digest('hex')));
     return converter.hexToDec('0x' + transactionHash.digest('hex'))
   }
 }
