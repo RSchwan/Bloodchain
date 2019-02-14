@@ -2,20 +2,11 @@
 
 // Import libraries
 const lib = require('./lib.js');
-lib.sayHello();
 
-// Import libraries
-// const Web3     = require('web3');
-// const provider = new Web3.providers.HttpProvider('http://localhost:7545');
-// const contract = require('truffle-contract');
-// const path     = require('path');
-// const MyContractJSON = require('./SmartContract.json');
-//
-// const MyContract = contract(MyContractJSON);
-// MyContract.setProvider(provider);
-
-lib.Consensus.init();
-lib.Consensus.get();
+lib.Consensus.init('0x1278d23BE990fAc9da87a0766468e4a4722D459e');
+// lib.Consensus.get();
+lib.Consensus.set();
+// lib.Consensus.get();
 
 // MyContract.deployed()
 // .then( function(instance) {
